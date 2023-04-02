@@ -1,7 +1,7 @@
-import pandas as pd
-from markov import *
-from samplednt import *
-from main import *
+import time, numpy as np, math, pandas as pd
+from markov import transmat, hazardandomegastar, probcumulate
+from samplednt import probdelt
+from main import surv
 
 #main loop
 if __name__ == '__main__':
@@ -21,7 +21,8 @@ if __name__ == '__main__':
     #nu = 6.44E-7*unitlength
 
     #empirical graptolite data
-    df = pd.read_csv('F_Data_w_zero-ra_Aug2016_V3_for_JamesSaulsbury.csv')
+    datname = '' #replace with name of dataset with columns FA_age, LA_age representing first and last appearance in Ma
+    df = pd.read_csv(datname)
     FADs = df.FA_age #you can also use df['column_name']
     LADs = df.LA_age
     ord = np.logical_and(list(df.FA_age>447),list(df.FA_age<481))

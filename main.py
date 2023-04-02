@@ -1,21 +1,12 @@
 #main.py is used for all the main analyses except fitting NT models, which is done in cumulated.py
 from scipy import stats
-import random, copy, time, numpy as np, matplotlib.pyplot as plt,math, pandas as pd
-from markov import *
-from samplednt import *
+import time, numpy as np, matplotlib.pyplot as plt,math, pandas as pd
+from markov import transmat, hazardandomegastar
+from samplednt import probdelt
 
 #surv() takes a list of empirical geological durations and outputs the number of species surviving at least X timesteps up to the max duration
 def surv(durations):
     return([sum([v>i for v in durations]) for i in range(int(max(durations)))])
-
-#durations() takes a list of communities returns a list of durations
-#number of communities between first and last (inclusive)
-def durations(comms):
-    out = []
-    for j in np.unique(np.concatenate([i[0] for i in comms])):
-        x = [i for i,y in enumerate([j in i[0] for i in comms]) if y]
-        out.append(max(x)-min(x)+1)
-    return(out)
 
 #main loop
 if __name__ == '__main__':
@@ -46,7 +37,8 @@ if __name__ == '__main__':
     trans = transmat(J=J,nu=nu)
     
     #empirical graptolite data
-    df = pd.read_csv('F_Data_w_zero-ra_Aug2016_V3_for_JamesSaulsbury.csv')
+    datname = '' #replace with name of dataset with columns FA_age, LA_age representing first and last appearance in Ma
+    df = pd.read_csv(datname)
     FADs = df.FA_age #you can also use df['column_name']
     LADs = df.LA_age
     ord = np.logical_and(list(df.FA_age>447),list(df.FA_age<481))
