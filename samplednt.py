@@ -1,5 +1,5 @@
 #samplednt.py implements survivorship in neutral theory with incomplete sampling
-#corresponds to equations 11-15 in the main text
+#corresponds to equations 8-15 in the methods
 import numpy as np, random, matplotlib.pyplot as plt, math, mpmath, time, warnings,sys
 sysmin = sys.float_info.min #used when calculations involve very small numbers
 

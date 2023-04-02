@@ -1,4 +1,5 @@
 #markov.py file contains all the functions for calculating probabilities of extinction and sampling as a function of species age in Hubbell's neutral theory
+#corresponds to equations 1-7 in the methods
 import numpy as np, matplotlib.pyplot as plt, random, math, time
 from scipy import linalg, sparse
 from scipy.sparse.linalg import eigs

@@ -1,3 +1,10 @@
+#cumulated.py calculated log likelihoods for durations in units of lifespans, not timesteps
+#one NT individual has a lifespan equal to J timesteps, where J is community size
+#therefore likelihoods cannot be compared for different J when data are in units of timesteps
+#Rounds all data up to the nearest integer lifespan, and calculates probabilities accordingly
+#For example, for J=18, durations of between 1 and 18 timesteps get rounded up to 1 lifespan
+#So the corresponding probability for 1 lifespan cumulates (adds together) probabilities for between 1 and 18 timesteps
+
 import time, numpy as np, math, pandas as pd
 from markov import transmat, hazardandomegastar, probcumulate
 from samplednt import probdelt
