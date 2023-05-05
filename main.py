@@ -37,7 +37,7 @@ if __name__ == '__main__':
     trans = transmat(J=J,nu=nu)
     
     #empirical graptolite data
-    datname = '' #replace with name of dataset with columns FA_age, LA_age representing first and last appearance in Ma
+    datname = 'cramptonetal2016data.csv'
     df = pd.read_csv(datname)
     FADs = df.FA_age #you can also use df['column_name']
     LADs = df.LA_age
