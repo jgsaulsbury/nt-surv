@@ -11,4 +11,6 @@ Python code for modeling age-dependent extinction with ecological neutral theory
 
 **ntsim_local.py** and **ntsim_meta.py** provide functions for simulating neutral communities at the local community and metacommunity scale, respectively. They were not used in the paper, but are useful for exploring the predictions of neutral theory.
 
+**supp_exercises.py** contains two analyses described in the supplementary materials: experiments with temporal resolution and with migration.
+
 **cramptonetal2016data.csv** is the dataset, used by main.py and cumulated.py.
