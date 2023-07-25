@@ -106,8 +106,10 @@ if __name__ == '__main__':
     ks = max([abs(i) for i in np.subtract(tcdf,ecdf)])
     print('N =',len(dur))
     print('Kolmogorov-Smirnov stat',ks)
-    print('Critical value, alpha = 0.05:',1.36/math.sqrt(len(dur)))
-    print('Critical value, alpha = 0.01:',1.63/math.sqrt(len(dur)))
+    print('Critical value, alpha = 0.05:',1.35810/math.sqrt(len(dur)))
+    print('Critical value, alpha = 0.02:',1.51743/math.sqrt(len(dur)))
+    print('Critical value, alpha = 0.01:',1.62762/math.sqrt(len(dur)))
+    print('Critical value, alpha = 0.001:',1.94947/math.sqrt(len(dur)))
     #"""
     
     #"""
