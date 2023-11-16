@@ -13,4 +13,6 @@ Python code for modeling age-dependent extinction with ecological neutral theory
 
 **supp_exercises.py** contains two analyses described in the supplementary materials: experiments with temporal resolution and with migration.
 
+**supp_exercises.R** contains more experiments with temporal resolution.
+
 **cramptonetal2016data.csv** is the dataset, used by main.py and cumulated.py.
