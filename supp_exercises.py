@@ -2,17 +2,19 @@
 from ntsim_meta import *
 from markov import *
 from main import *
-import matplotlib.pyplot as plt, pandas as pd
+import matplotlib.pyplot as plt, pandas as pd,mpmath
 
 #main loop
 if __name__ == '__main__':
         
-
-    #"""==EXERCISE 1: degrading temporal resolution==
+    #remove pound sign on next line to comment exercise out
+    #"""==EXERCISE 1: coarsening temporal resolution==
     unitlength = 5000
     J = 18 #entire dataset
-    nu = 4.56E-7*unitlength #entire dataset
-    s = 0.00037 #entire dataset
+    #nu = 4.56E-7*unitlength #entire dataset
+    nu = 4.24E-7*unitlength #not rounded up
+    #s = 0.00037 #entire dataset
+    s = 0.000495 #not rounded up
     #empirical graptolite data
     datname = 'cramptonetal2016data.csv'
     df = pd.read_csv(datname)
@@ -21,24 +23,57 @@ if __name__ == '__main__':
     dur = (FADs-LADs)*1E6 #durations in years
     dur = dur/unitlength #durations in lifespans
     dur = [math.ceil(i*J) for i in dur if i > 0] #durations in number of NT timesteps, rounded and removed of 0 durations
-    roundto = 50000 #round up to this resolution
+    roundto = 1000000 #round up to this resolution
     resolution = round(roundto/unitlength*J) #resolution in timesteps = resolution in years/unitlength*J
-    dur = [math.ceil(i/resolution)*resolution for i in dur] #coarsened resolution
-    se = surv(dur) #survivorship empirical
+    dur_coarse = [math.ceil(i/resolution)*resolution for i in dur] #coarsened resolution
+    se = surv(dur_coarse) #survivorship empirical
     se = np.divide(se,max(se))
     #theoretical
     timesteps = int(J*1E6/unitlength*20)
     trans = transmat(J=J,nu=nu)
-    start = time.time()
+    start = time.time() #start timer
     haz,os = hazardandomegastar(tm=trans,Ni=1,t=timesteps,s=s) 
-    delt = list(np.unique(dur))
-    counts = [dur.count(i) for i in delt]
-    ntprob = probdelt(delt=delt,d=os,h=haz,endpoint=timesteps,normalize=True)
-    print(time.time()-start,'seconds')
-    print('log likelihood',sum([math.log(ntprob[i])*counts[i] for i in range(len(delt))]))
+    #plotting
+    #theoretical
+    start=time.time()
+    print("here goes")
+    delt_plot = list(range(1,max(dur)+1))
+    ntprob_plot = [0]+probdelt(delt=delt_plot,d=os,h=haz,endpoint=timesteps,normalize=True)    
+    S = 1-np.cumsum(ntprob_plot)
+    print(time.time()-start)
+    #original resolution
+    x = [0]+[i/J*unitlength/1E6 for i in delt_plot]
+    plt.semilogy(x,S)
+    plt.plot([0,15,15,0,0],[1,1,1E-4,1E-4,1]) #box for aligning with R output
+    plt.show()
+    #0.05My
+    res = round(50000/unitlength*J)
+    plt.semilogy([i for i in x[0::res] for _ in (0,1)][1:]+[x[-1]],[i for i in S[0::res] for _ in (0,1)])
+    plt.plot([0,15,15,0,0],[1,1,1E-4,1E-4,1])
+    plt.show()
+    #0.1My
+    res = round(100000/unitlength*J)
+    plt.semilogy([i for i in x[0::res] for _ in (0,1)][1:]+[x[-1]],[i for i in S[0::res] for _ in (0,1)])
+    plt.plot([0,15,15,0,0],[1,1,1E-4,1E-4,1])
+    plt.show()
+    #0.25My
+    res = round(250000/unitlength*J)
+    plt.semilogy([i for i in x[0::res] for _ in (0,1)][1:]+[x[-1]],[i for i in S[0::res] for _ in (0,1)])
+    plt.plot([0,15,15,0,0],[1,1,1E-4,1E-4,1])
+    plt.show()
+    #0.5My
+    res = round(500000/unitlength*J)
+    plt.semilogy([i for i in x[0::res] for _ in (0,1)][1:]+[x[-1]],[i for i in S[0::res] for _ in (0,1)])
+    plt.plot([0,15,15,0,0],[1,1,1E-4,1E-4,1])
+    plt.show()
+    #1My
+    res = round(1000000/unitlength*J)
+    plt.semilogy([i for i in x[0::res] for _ in (0,1)][1:]+[x[-1]],[i for i in S[0::res] for _ in (0,1)])
+    plt.plot([0,15,15,0,0],[1,1,1E-4,1E-4,1])
+    plt.show()
     #"""
 
-    #"""==EXERCISE 2: migration==
+    """==EXERCISE 2: migration==
     #simulates NT in an 8x8 metacommunity with J=8 and varying migration rate m
     random.seed(1)
     m1=m2=8
