@@ -1,0 +1,44 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: >-
+  Python code for modeling age-dependent extinction with
+  ecological neutral theory
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: James
+    family-names: Saulsbury
+    name-particle: G.
+    email: jgsauls@ku.edu
+    affiliation: >-
+      Biodiversity Institute and Department of Ecology and
+      Evolutionary Biology, University of Kansas
+    orcid: 'https://orcid.org/0000-0002-5903-9220'
+  - given-names: C. Tomomi
+    family-names: Parins-Fukuchi
+    affiliation: >-
+      Department of Ecology & Evolutionary Biology,
+      University of Toronto
+  - given-names: Connor
+    name-particle: J.
+    family-names: Wilson
+    affiliation: >-
+      Department of Ecology & Evolutionary Biology,
+      University of Arizona
+  - given-names: Trond
+    family-names: Reitan
+    affiliation: >-
+      Center for Planetary Habitability, Department of
+      Geosciences, University of Oslo
+  - given-names: Lee Hsiang
+    family-names: Liow
+    affiliation: >-
+      Center for Planetary Habitability, Department of
+      Geosciences, University of Oslo
+identifiers:
+  - type: url
+    value: 'https://github.com/jgsaulsbury/nt-surv'
