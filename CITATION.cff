@@ -10,9 +10,8 @@ message: >-
   metadata from this file.
 type: software
 authors:
-  - given-names: James
+  - given-names: James G.
     family-names: Saulsbury
-    name-particle: G.
     email: jgsauls@ku.edu
     affiliation: >-
       Biodiversity Institute and Department of Ecology and
@@ -23,8 +22,7 @@ authors:
     affiliation: >-
       Department of Ecology & Evolutionary Biology,
       University of Toronto
-  - given-names: Connor
-    name-particle: J.
+  - given-names: Connor J.
     family-names: Wilson
     affiliation: >-
       Department of Ecology & Evolutionary Biology,
